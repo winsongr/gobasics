@@ -15,9 +15,9 @@ func main() {
 		fmt.Println("7 is odd")
 	}
 
-	db.AutoMigrate(&user{})
-	// db.Migrator().DropTable(&user{})
-	// db.Migrator().CreateTable(&user{})
+	// db.AutoMigrate(&user{}, &add{})
+	db.Migrator().DropTable(&user{}, &add{})
+	db.Migrator().CreateTable(&user{}, &add{})
 	// User := user{
 	// 	Name:  "wibi",
 	// 	Lastn: "1608",
@@ -64,18 +64,22 @@ func main() {
 	// db.Last(&User)
 	// db.Where("Cell", "1608").First(&User)
 	// fmt.Println(&User)
-User:=user{
+	// User:=user{
 
-}
-db.Create(&User)
+	// }
+	// db.Create(&User)
 }
 
 type user struct {
-	gorm.Model
-	Id    int
-	Name  string
-	Lastn string
-	Cell  int`gorm:"default:1"`
-	Pin   int `gorm:"size:100;null"`
-	Email string `gorm:"unique; not null"`
+	Id   int
+	Name string
+	// Lastn string
+	// Cell  int `gorm:"default:1"`
+	// Pin   int `gorm:"size:100;null"`
+	// Email string `gorm:"unique; not null"`
+	// Address add `gorm:"foriegnKey:Userid"`
+}
+type add struct {
+	Userid int
+	Name   string
 }
